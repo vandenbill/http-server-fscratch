@@ -41,7 +41,7 @@ func main() {
 
 			fmt.Fprint(conn, "HTTP/1.1 200 OK\r\n")
 			fmt.Fprint(conn, "Content-Type: text/html\r\n\r\n")
-			fmt.Fprint(conn, "<p>"+strings.Split(req, " ")[0]+"<p>")
+			fmt.Fprint(conn, strings.Split(req, " ")[0])
 		}()
 	}
 }
