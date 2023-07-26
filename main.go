@@ -39,9 +39,14 @@ func main() {
 				return
 			}
 
-			fmt.Fprint(conn, "HTTP/1.1 200 OK\r\n")
-			fmt.Fprint(conn, "Content-Type: text/html\r\n\r\n")
-			fmt.Fprint(conn, strings.Split(req, " ")[0])
+			w := bufio.NewWriter(conn)
+			w.WriteString(
+				fmt.Sprintf("%s\r\n%s\r\n\r\n%s",
+					"HTTP/1.1 200 OK",
+					"Content-Type: text/html",
+					strings.Split(s.Text(), " ")[0],
+				))
+			w.Flush()
 		}()
 	}
 }
